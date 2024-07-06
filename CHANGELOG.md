@@ -14,6 +14,7 @@ BUG FIXES:
 - Correct cleanup error when `nginx_config_cleanup_paths` is not defined.
 - Disable check_mode for validation task `jinja2_version`.
 - The default PID path has changed as of NGINX 1.27.5 and 1.28.0.
+- Properly wrap `http_version` number in quotes in both the template defaults and Molecule tests.
 
 TESTS:
 
