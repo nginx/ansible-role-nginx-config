@@ -1,0 +1,47 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Configure NGINX
+      ansible.builtin.include_role:
+        name: ansible-role-nginx-config
+      vars:
+        nginx_config_debug_output: true
+
+        nginx_config_main_template_enable: true
+        nginx_config_main_template:
+          template_file: nginx.conf.j2
+          deployment_location: /etc/nginx/nginx.conf
+          config:
+            main:
+              user: nginx
+              worker_processes: auto
+              error_log:
+                - file: /var/log/nginx/error.log
+                  level: notice
+              pid: /var/run/nginx.pid
+              worker_rlimit_nofile: 2048
+            events:
+              worker_connections: 1024
+            mgmt:
+              enforce_initial_report: true
+              license_token: license.jwt
+              # proxy:
+              # proxy_username:
+              # proxy_password:
+              resolver:
+                address: 127.0.0.1
+                valid: 30s
+                ipv4: true
+                ipv6: true
+                status_zone: mgmt_mem_zone
+              # ssl_crl: /path/to/file
+              # ssl_trusted_certificate: /path/to/file
+              ssl_verify: false
+              state_path: /var/lib/nginx/state
+              usage_report:
+                endpoint: product.connect.nginx.com
+                interval: 30m
+            http:
+              include:
+                - /etc/nginx/conf.d/*.conf

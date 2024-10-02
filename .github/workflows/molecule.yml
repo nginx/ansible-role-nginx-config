@@ -49,6 +49,7 @@ jobs:
           - complete
           - complete_plus
           - default
+          - entitlement_plus
           - push_config
           - reverse_proxy
           - stub_status

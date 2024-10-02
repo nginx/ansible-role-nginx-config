@@ -116,3 +116,43 @@ worker_aio_requests {{ events['worker_aio_requests'] }};
 worker_connections {{ events['worker_connections'] }};
 {% endif %}
 {% endmacro %}
+
+{% macro mgmt(mgmt) %}
+{% if mgmt['enforce_initial_report'] is defined and mgmt['enforce_initial_report'] is boolean %}
+enforce_initial_report {{ mgmt['enforce_initial_report'] | ternary('on', 'off') }};
+{% endif %}
+{% if mgmt['license_token'] is defined %}
+license_token {{ mgmt['license_token'] }};
+{% endif %}
+{% if mgmt['proxy'] is defined %}
+proxy {{ mgmt['proxy'] }};
+{% endif %}
+{% if mgmt['proxy_username'] is defined %}
+proxy_username {{ mgmt['proxy_username'] }};
+{% endif %}
+{% if mgmt['proxy_password'] is defined %}
+proxy_password {{ mgmt['proxy_password'] }};
+{% endif %}
+{% if mgmt['resolver'] is defined %}
+resolver {{ mgmt['resolver']['address'] if mgmt['resolver']['address'] is string else mgmt['resolver']['address'] | join(' ') -}}
+{{- (' valid=' + mgmt['resolver']['valid'] | string) if mgmt['resolver']['valid'] is defined -}}
+{{- (' ipv4=' + mgmt['resolver']['ipv4'] | ternary('on', 'off')) if mgmt['resolver']['ipv4'] is defined and mgmt['resolver']['ipv4'] is boolean -}}
+{{- (' ipv6=' + mgmt['resolver']['ipv6'] | ternary('on', 'off')) if mgmt['resolver']['ipv6'] is defined and mgmt['resolver']['ipv6'] is boolean -}}
+{{- (' status_zone=' + mgmt['resolver']['status_zone'] | string) if mgmt['resolver']['status_zone'] is defined }};
+{% endif %}
+{% if mgmt['ssl_crl'] is defined %}
+ssl_crl {{ mgmt['ssl_crl'] }};
+{% endif %}
+{% if mgmt['ssl_trusted_certificate'] is defined %}
+ssl_trusted_certificate {{ mgmt['ssl_trusted_certificate'] }};
+{% endif %}
+{% if mgmt['ssl_verify'] is defined and mgmt['ssl_verify'] is boolean %}
+ssl_verify {{ mgmt['ssl_verify'] | ternary('on', 'off') }};
+{% endif %}
+{% if mgmt['state_path'] is defined %}
+state_path {{ mgmt['state_path'] }};
+{% endif %}
+{% if mgmt['usage_report'] is defined %}
+usage_report{{ ' endpoint=' + mgmt['usage_report']['endpoint'] if mgmt['usage_report']['endpoint'] is defined }}{{ (' interval=' + mgmt['usage_report']['interval'] | string) if mgmt['usage_report']['interval'] is defined }};
+{% endif %}
+{% endmacro %}

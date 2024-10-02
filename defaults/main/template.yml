@@ -66,6 +66,25 @@ nginx_config_main_template:
       worker_connections: 1024  # Number
     # include:  # String or a list of strings
     #   - /etc/nginx/modules.conf
+    mgmt:  # Configure NGINX management directives. Only required when using NGINX Plus >R33.
+      enforce_initial_report: true  # Boolean
+      license_token: license.jwt
+      # proxy: 123.456.789:8353
+      # proxy_username: username
+      # proxy_password: password
+      resolver:
+        address: 127.0.0.1  # Required -- String or a list of strings
+        valid: 30s
+        ipv4: true  # Boolean
+        ipv6: true  # Boolean
+        status_zone: mgmt_mem_zone
+      # ssl_crl: /path/to/file
+      # ssl_trusted_certificate: /path/to/file
+      ssl_verify: false  # Boolean
+      state_path: /var/lib/nginx/state
+      usage_report:
+        endpoint: product.connect.nginx.com
+        interval: 30m
     http:
       include:  # String or a list of strings
         - /etc/nginx/mime.types
