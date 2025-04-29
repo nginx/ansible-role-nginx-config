@@ -23,6 +23,7 @@
   ansible.builtin.service:
     name: nginx
     state: reloaded
+    enabled: true
   when:
     - nginx_config_start | bool
     - not ansible_check_mode | bool
