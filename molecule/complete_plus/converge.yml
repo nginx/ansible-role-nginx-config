@@ -30,7 +30,7 @@
               error_log:
                 - file: /var/log/nginx/error.log
                   level: notice
-              pid: /var/run/nginx.pid
+              pid: /run/nginx.pid
               worker_rlimit_nofile: 2048
             events:
               worker_connections: 1024

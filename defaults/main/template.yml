@@ -36,7 +36,7 @@ nginx_config_main_template:
         # - /var/log/nginx/error.log
         # - file: /var/log/nginx/error.log  # Required
         #   level: notice
-      pid: /var/run/nginx.pid
+      pid: /run/nginx.pid
       # daemon: true  # Boolean
       # debug_points: abort  # Can be set to 'abort' or 'stop'
       # env:  # MALLOC_OPTIONS  # String, a list of strings, a dictionary, or a list of dictionaries. The 'variable' variable is only required when setting a 'value'.

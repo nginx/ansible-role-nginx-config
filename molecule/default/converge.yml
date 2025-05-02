@@ -20,7 +20,7 @@
               error_log:
                 file: /var/log/nginx/error.log
                 level: notice
-              pid: /var/run/nginx.pid
+              pid: /run/nginx.pid
             events:
               worker_connections: 1024
             http:

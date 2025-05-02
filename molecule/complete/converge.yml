@@ -53,7 +53,7 @@
                 - file: /var/log/nginx/molecule.log
                 - file: /var/log/nginx/error.log
                   level: notice
-              pid: /var/run/nginx.pid
+              pid: /run/nginx.pid
               daemon: true
               debug_points: abort
               env:
