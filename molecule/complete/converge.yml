@@ -854,6 +854,24 @@
                   inactive: 20s
                   min_uses: 2
                   valid: 1m
+              map:
+                hash_bucket_size: 128
+                hash_max_size: 4096
+                mappings:
+                  - string: $hostname
+                    variable: $stream_name
+                    hostnames: true
+                    volatile: true
+                    content:
+                      - value: example.com
+                        new_value: 3
+                  - string: $host
+                    variable: $isblockaccess_ua
+                    content:
+                      - value: default
+                        new_value: 0
+                      - value: '"~jndi:ldap"'
+                        new_value: 2
               servers:
                 - core:
                     listen:

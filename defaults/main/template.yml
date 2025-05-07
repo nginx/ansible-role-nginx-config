@@ -961,6 +961,17 @@ nginx_config_stream_template:
           inactive: 20s
           min_uses: 2  # Number
           valid: 1m
+      map:  # Configure maps -- Available only in the 'stream' context
+        hash_bucket_size: 64
+        hash_max_size: 2048
+        mappings:  # List of dictionaries
+          - string: $remote_addr  # Required
+            variable: $upstream  # Required
+            hostnames: false  # Boolean
+            volatile: false  # Boolean
+            content:  # Dictionary or list of dictionaries
+              - value: default
+                new_value: 0
       custom_directives:  # String or a list of strings. Custom directive for specific use cases not covered by templates. Note: You need to include each directive in its full form. Make sure you add a semi-colon or closing curly bracket at the end of each directive.
         - server {};
       servers:   # All previous modules are also available (when allowed) in the 'servers' context.
