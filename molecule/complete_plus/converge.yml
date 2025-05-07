@@ -212,6 +212,7 @@
                 min_length: 20
                 proxied:
                   - expired
+                static: false
                 vary: false
               auth_jwt:
                 enable: false
