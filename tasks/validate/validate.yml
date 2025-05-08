@@ -32,6 +32,7 @@
       ansible.builtin.command: ansible-galaxy collection list
       register: collection_list
       changed_when: false
+      check_mode: false
 
     - name: Verify that the 'community.general' Ansible collection is installed on your Ansible host
       ansible.builtin.assert:

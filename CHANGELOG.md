@@ -6,15 +6,17 @@ FEATURES:
 
 - Add validation tasks to check the Ansible version, the Jinja2 version, and whether the required Ansible collections for this role are installed.
 - Bump the Ansible `community.general` collection to `9.2.0`, `community.crypto` collection to `2.21.1` and `community.docker` collection to `3.11.0`.
-- Add templating support for the `ngx_http_gzip_static_module` NGINX module.
+- Add templating support for the `ngx_http_gzip_static_module` and `ngx_stream_map_module` NGINX modules.
 
 BUG FIXES:
 
 - Fix the default path for the stream template deployment location.
 - Fix incompatibility when using the `listen` directive and setting both the `quic` and `so_keepalive` parameters.
 - Correct cleanup error when `nginx_config_cleanup_paths` is not defined.
-- Disable check_mode for validation task `jinja2_version`.
+- Disable check_mode for `jinja2_version` and Ansible collections validation tasks.
 - The default PID path has changed as of NGINX 1.27.5 and 1.28.0.
+- Properly wrap `http_version` number in quotes in both the template defaults and Molecule tests.
+- NGINX `set_real_ip_from` directive template parameter should be a list.
 
 TESTS:
 
