@@ -464,6 +464,7 @@
                 min_length: 20
                 proxied:
                   - expired
+                static: always
                 types:
                   - text/html
                 vary: false

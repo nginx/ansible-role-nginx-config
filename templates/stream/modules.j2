@@ -67,7 +67,7 @@ access_log {{ 'off' if not log else log['path'] if log['path'] is defined }}{{ (
 {{- (' if=' + log['if']) if log['if'] is defined }};
 {% endfor %}
 {% endif %}
-{% if log['error'] is defined %}{# This does not belong here but we are making an exception #}
+{% if log['error'] is defined %}{# ngx_core_module #}{# This does not belong here but we are making an exception #}
 {% for log in log['error'] if (log['error'] is not mapping and log['error'] is not string) %}
 error_log {{ log if log is string else log['file'] }}{{ (' ' + log['level'] | string) if log['level'] is defined }};
 {% else %}

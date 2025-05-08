@@ -71,6 +71,9 @@ gzip_min_length {{ gzip['min_length'] }};
 {% if gzip['proxied'] is defined %}
 gzip_proxied {{ 'off' if not gzip['proxied'] else (gzip['proxied'] if gzip['proxied'] is string else gzip['proxied'] | join(' ')) }};
 {% endif %}
+{% if gzip['static'] is defined %}{# ngx_http_gzip_static_module #}{# This does not belong here but we are making an exception #}
+gzip_static {{ (gzip['static'] | ternary('on', 'off')) if gzip['static'] is boolean else gzip['static'] if gzip['static'] == 'always' }};
+{% endif %}
 {% if gzip['types'] is defined %}
 gzip_types {{ gzip['types'] if gzip['types'] is string else gzip['types'] | join(' ') }};
 {% endif %}
