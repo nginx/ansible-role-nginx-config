@@ -794,6 +794,7 @@ nginx_config_stream_template_enable: false
 nginx_config_stream_template:
   - template_file: stream/default.conf.j2
     deployment_location: /etc/nginx/conf.d/streams/stream_default.conf
+    backup: true
     config:
       upstreams:  # Configure upstreams
         - name: stream_upstream  # Required

@@ -17,6 +17,7 @@ BUG FIXES:
 - The default PID path has changed as of NGINX 1.27.5 and 1.28.0.
 - Properly wrap `http_version` number in quotes in both the template defaults and Molecule tests.
 - NGINX `set_real_ip_from` directive template parameter should be a list.
+- Fix backup parameter for stream templates.
 
 TESTS:
 

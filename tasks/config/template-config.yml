@@ -121,7 +121,7 @@
   ansible.builtin.template:
     src: "{{ item['template_file'] | default('stream/default.conf.j2') }}"
     dest: "{{ item['deployment_location'] | default('/etc/nginx/conf.d/stream/stream_default.conf') }}"
-    backup: true
+    backup: "{{ item['backup'] | default(true) }}"
     mode: "0644"
   loop: "{{ nginx_config_stream_template }}"
   loop_control:
