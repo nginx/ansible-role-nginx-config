@@ -289,5 +289,8 @@ variables_hash_bucket_size {{ core['variables_hash_bucket_size'] }};
 {% if core['variables_hash_max_size'] is defined %}{# 'variables_hash_max_size' directive is only available in the 'http' context #}
 variables_hash_max_size {{ core['variables_hash_max_size'] }};
 {% endif %}
+{% if core['uwsgi_pass'] is defined %}{# 'uwsgi_pass' directive is only available in the 'location' context #}
+uwsgi_pass {{ core['uwsgi_pass'] }};
+{% endif %}
 
 {% endmacro %}
