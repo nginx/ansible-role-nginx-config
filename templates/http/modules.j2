@@ -198,9 +198,9 @@ access_log {{ 'off' if not access_item else access_item['path'] if access_item['
 {% if log['error'] is defined %}{# This does not belong here but we are making an exception #}
 {% for error_item in log['error'] if (log['error'] is not mapping and log['error'] is not string) %}
 error_log {{ error_item if error_item is string else error_item['file'] }}{{ (' ' + error_item['level'] | string) if error_item['level'] is defined }};
-{% endfor %}
 {% else %}
 error_log {{ log['error'] if log['error'] is string else log['error']['file'] }}{{ (' ' + log['error']['level'] | string) if log['error']['level'] is defined }};
+{% endfor %}
 {% endif %}
 {% if log['open_log_file_cache'] is defined %}
 open_log_file_cache {{ 'off' if not log['open_log_file_cache'] else ('max=' + log['open_log_file_cache']['max'] | string) }}{{ (' inactive=' + log['open_log_file_cache']['inactive'] | string) if log['open_log_file_cache']['inactive'] is defined }}{{ (' min_uses=' + log['open_log_file_cache']['min_uses'] | string) if log['open_log_file_cache']['min_uses'] is defined and log['open_log_file_cache']['min_uses'] is number }}{{ (' valid=' + log['open_log_file_cache']['valid'] | string) if log['open_log_file_cache']['valid'] is defined }};
