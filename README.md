@@ -44,7 +44,7 @@ This will also ensure you are deploying/running this role with a fully tested ve
     - name: ansible.posix
       version: 2.0.0
     - name: community.general
-      version: 11.0.0
+      version: 12.6.1
     - name: community.crypto # Only required if you plan to to test the NGINX Plus Molecule scenario
       version: 3.0.0
     - name: community.docker # Only required if you plan to use Molecule
