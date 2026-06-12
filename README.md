@@ -88,12 +88,12 @@ If you want to contribute to this role, you will also need to install Ansible Li
 - Instructions on how to install Molecule can be found in the [Molecule website](https://molecule.readthedocs.io/en/latest/installation.html). *You will also need to install the Molecule plugins package and the Docker Python SDK.*
 - To run the NGINX Plus/App Protect config Molecule tests, you must copy your NGINX Plus/App Protect license to the role's Molecule [`common/files/license`](/molecule/common/files/license/) directory.
 
-  You can alternatively add your NGINX Plus/App Protect repository certificate and key to the local environment. Run the following commands to export these files as base64-encoded variables and execute the Molecule tests:
+  You can alternatively add your NGINX Plus/App Protect repository certificate and key to the local environment. Run the following commands to export these files as variables and execute the Molecule tests:
 
   ```bash
-  export NGINX_CRT=$( cat <path to your certificate file> | base64 )
-  export NGINX_KEY=$( cat <path to your key file> | base64 )
-  molecule test -s plus
+  export NGINX_CRT=$( cat <path to your certificate file> )
+  export NGINX_KEY=$( cat <path to your key file> )
+  molecule test -s api_plus
   ```
 
 - For ease of use, you can install and/or upgrade Molecule, the Molecule plugins package, and the Docker Python SDK by running the following command on your Ansible host:
