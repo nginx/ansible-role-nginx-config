@@ -279,10 +279,10 @@ real_ip_recursive {{ realip['real_ip_recursive'] | ternary('on', 'off') }};
 return {{ rewrite['return'] if (rewrite['return'] is string or rewrite['return'] is number) }}{{ rewrite['return']['code'] if rewrite['return']['code'] is defined }}{{ (' ' + rewrite['return']['text'] | string) if rewrite['return']['text'] is defined }}{{ (' ' + rewrite['return']['url'] | string) if rewrite['return']['url'] is defined }};
 {% endif %}
 {% if rewrite['rewrites'] is defined %}{# 'rewrite' directive is not available in the 'http' context #}
-{% for rewrite in rewrite['rewrites'] if rewrite['rewrites'] is not mapping %}
-rewrite {{ rewrite['regex'] }} {{ rewrite['replacement'] }}{{ (' ' + rewrite['flag'] | string) if rewrite['flag'] is defined and rewrite['flag'] in ['last', 'break', 'redirect', 'permanent'] }};
+{% for rewrite_item in rewrite['rewrites'] if rewrite['rewrites'] is not mapping %}
+rewrite {{ rewrite_item['regex'] }} {{ rewrite_item['replacement'] }}{{ (' ' + rewrite_item['flag'] | string) if rewrite_item['flag'] is defined and rewrite_item['flag'] in ['last', 'break', 'redirect', 'permanent'] }};
 {% else %}
-rewrite {{ rewrite['rewrites']['regex'] }} {{ rewrite['rewrites']['replacement'] }}{{ (' ' + rewrite['rewrites']['flag'] | string) if rewrite['rewrites']['flag'] is defined and rewrite['rewrites']['flag'] in ['last', 'break', 'redirect', 'permanent'] }};
+rewrite {{ rewrite_item['rewrites']['regex'] }} {{ rewrite_item['rewrites']['replacement'] }}{{ (' ' + rewrite_item['rewrites']['flag'] | string) if rewrite_item['rewrites']['flag'] is defined and rewrite_item['rewrites']['flag'] in ['last', 'break', 'redirect', 'permanent'] }};
 {% endfor %}
 {% endif %}
 {% if rewrite['log'] is defined and rewrite['log'] is boolean %}
