@@ -309,6 +309,12 @@ server {
         {{ core(location['core']) }}
 {%- endfilter %}
 {% endif %}
+{% if location['uwsgi'] is defined %}
+{% from 'http/uwsgi.j2' import uwsgi with context %}
+{% filter indent(8) %}
+        {{ uwsgi(location['uwsgi']) }}
+{%- endfilter %}
+{% endif %}
 {% if location['http2'] is defined %}
 {% from 'http/modules.j2' import http2 with context %}
 {% filter indent(8) %}
