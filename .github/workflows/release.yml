@@ -16,7 +16,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Run Release Drafter
-        uses: release-drafter/release-drafter@c2e2804cc59f45f57076a99af580d0fedb697927 # v7.3.0
+        uses: release-drafter/release-drafter@72967cdc98ddd3160f1fc3dff619de365e137dd0 # v7.9.0
         with:
           disable-autolabeler: ${{ github.actor == 'renovate[bot]' }}
         env:
